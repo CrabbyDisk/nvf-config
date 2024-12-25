@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./lsp.nix
   ];
@@ -14,10 +14,8 @@
     useSystemClipboard = true;
 
     visuals = {
-      enable = true;
       nvimWebDevicons.enable = true;
       scrollBar.enable = true;
-      smoothScroll.enable = true;
       cellularAutomaton.enable = false;
       fidget-nvim.enable = true;
       highlight-undo.enable = true;
@@ -44,15 +42,20 @@
       transparent = false;
     };
 
-    autopairs.enable = true;
+    autopairs.nvim-autopairs.enable = true;
 
-    autocomplete = {
+    autocomplete.nvim-cmp = {
       enable = true;
-      type = "nvim-cmp";
     };
 
     tabline = {
-      nvimBufferline.enable = true;
+      nvimBufferline = {
+        enable = true;
+        mappings = {
+          cycleNext = "<leader>bn";
+          cyclePrevious = "<leader>bp";
+        };
+      };
     };
 
     treesitter.context.enable = true;
@@ -90,7 +93,7 @@
 
     utility = {
       ccc.enable = false;
-      vim-wakatime.enable = false;
+      vim-wakatime.enable = true;
       icon-picker.enable = true;
       surround.enable = true;
       diffview-nvim.enable = true;
@@ -151,10 +154,6 @@
 
     session = {
       nvim-session-manager.enable = false;
-    };
-
-    gestures = {
-      gesture-nvim.enable = false;
     };
 
     comments = {
